@@ -29,11 +29,32 @@ class General extends CI_Controller
         if(isset($post) && count($post)){
             
             echo 'added';
-            var_dump($this->input->post());
+        
             
             $this->general_model->add_feeling($post);
         
         }
+        
+        //load entries
+        $feelings = $this->general_model->get_feelings();
+        
+        foreach($feelings as $key =>$feeling): ?>
+        
+          
+        
+        <div class="feeling">
+           
+        
+            
+            <p>Feeling: <?php echo $feeling['rating']; ?></p>
+            
+        </div>
+        
+        
+        <?php endforeach; 
+        
+        
+        
         
     }
     

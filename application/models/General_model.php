@@ -18,5 +18,19 @@ class General_model extends CI_Model
         $this->db->insert('logs', $data);
         
     }
+    
+    public function get_feelings()
+    {
+        
+        $where = array('user_id' => 1);
+        
+        $this->db->where($where);
+        $this->db->order_by('id', 'desc');
+        $query = $this->db->get('logs');
+        
+        return $query->result_array();
+        
+        
+    }
 
 }
