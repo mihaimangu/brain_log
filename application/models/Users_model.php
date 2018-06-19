@@ -23,5 +23,37 @@ class Users_model extends CI_Model
         
     }
     
+    public function remember_user($id = NULL)
+    {
+        
+      
+        $this->load->library('session');
+        
+        $array = array(
+            'logged_in' => true,
+            'username' => 'adm',
+        );
+        
+        $this->session->set_userdata($array);
+        
+    }
+    
+    public function check_auth()
+    {   
+    
+        $logged_in = $this->session->userdata('logged_in');
+    
+
+        
+        if(isset($logged_in) && $logged_in){
+            return true;
+        } else {
+            return false;
+        }
+        
+        
+    }
+    
+    
     
 }

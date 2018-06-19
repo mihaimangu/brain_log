@@ -9,5 +9,14 @@ class General_model extends CI_Model
 		$this->db->insert($table, $params);
 
 	}
+    
+    public function add_feeling($data)
+    {
+        
+        $data['time'] = time();
+        
+        $this->db->insert('logs', $data);
+        
+    }
 
 }
