@@ -14,46 +14,36 @@ class General extends CI_Controller
     public function index()
     {
         
+     
       
         $logged_in = $this->users_model->check_auth();
+        
+        //var_dump($logged_in);
        
         if(!$logged_in){
              header("Location: " . base_url('/login'));
+            
         }
         
      
+        $this->load->view('part/header');
         $this->load->view('add_note');
         
         $post = $this->input->post();
         
+
         if(isset($post) && count($post)){
-            
-            echo 'added';
-        
             
             $this->general_model->add_feeling($post);
         
         }
         
         //load entries
-        $feelings = $this->general_model->get_feelings();
-        
-        foreach($feelings as $key =>$feeling): ?>
-        
-          
-        
-        <div class="feeling">
-           
-        
-            
-            <p>Feeling: <?php echo $feeling['rating']; ?></p>
-            
-        </div>
+        $data['feelings'] = $this->general_model->get_feelings();
+        $this->load->view('list_feelings', $data);
         
         
-        <?php endforeach; 
-        
-        
+        $this->load->view('part/footer');
         
         
     }
@@ -69,7 +59,7 @@ class General extends CI_Controller
       
             $this->users_model->remember_user();   
             
-            echo 'success';
+            //echo 'success';
             
             header("Location: " . base_url(''));
             
