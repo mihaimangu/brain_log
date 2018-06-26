@@ -1,9 +1,9 @@
 <?php
-if(!file_exists(__DIR__ . '/local_variables.php')){
+if(!file_exists(__DIR__ . '/../../local_variables.php')){
 	echo 'Go to /application/config/local_variables_sample and copy it into local_variables. <br>';
 	echo 'Enter your configuration there!';
 } else {
-	require(__DIR__ . '/local_variables.php');
+	require(__DIR__ . '/../../local_variables.php');
 }
 defined('BASEPATH') OR exit('No direct script access allowed');
 

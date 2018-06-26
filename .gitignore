@@ -2,3 +2,4 @@
 vendor
 .idea
 application/config/local_variables.php
+local_variables.php
