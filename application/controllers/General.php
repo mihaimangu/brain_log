@@ -69,6 +69,15 @@ class General extends CI_Controller
         
     }
     
+    public function logout()
+    {
+        
+        $this->users_model->logout();
+        header("Location: " . base_url(''));
+        
+        
+    }
+    
     public function add_note()
     {
         
@@ -80,6 +89,15 @@ class General extends CI_Controller
     {
         
         echo 'view all notes';
+        
+    }
+    
+    public function debug()
+    {
+        
+      $logged_in = $this->session->userdata();
+        
+        var_dump($logged_in);
         
     }
     

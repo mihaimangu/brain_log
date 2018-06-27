@@ -59,7 +59,10 @@ $route['translate_uri_dashes'] = TRUE;
 | -------------------------------------------------------------------------
 */
 
-$route['api'] = 'users';
+$route['api'] = 'api';
 $route['api/user'] = 'users/user';
+$route['api/logs'] = 'api/logs';
 //$route['api/menus'] = 'api/menus';
 $route['login'] = 'general/login';
+$route['debug'] = 'general/debug';
+$route['logout'] = 'general/logout';
