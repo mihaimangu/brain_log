@@ -33,6 +33,7 @@ class api extends REST_Controller
 //            
 //        }
         
+        header('Access-Control-Allow-Origin: *');
         $this->load->model('general_model');
         
         $user_id = 1;
@@ -41,7 +42,7 @@ class api extends REST_Controller
             'user_id' => [$user_id],
         ];
         
-        $logs = $this->general_model->read_general('logs', NULL, $search);
+        $logs = $this->general_model->read_general('logs', NULL, $search, NULL, NULL, ['time', 'desc']);
         
         
         $this->response($logs, 200);
