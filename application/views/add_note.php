@@ -1,8 +1,8 @@
-<form method="POST">
+<form method="POST" class="add-form">
     
-<select>
-    <option>Feeling</option>
-</select>
+    <select>
+        <option>Feeling</option>
+    </select>
    
     <label for="rating"></label>
     <select name="rating">
@@ -16,6 +16,6 @@
     <input type="hidden" name="type" value="feeling">
     <input type="hidden" name="user_id" value="1">
     
-    <input type="submit">
+    <input type="submit" class="btn">
     
 </form>

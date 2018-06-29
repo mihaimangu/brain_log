@@ -12,3 +12,14 @@
 </head>
 
 <body>
+<div class="menu">
+    <ul>
+        <li class="menu-element">
+            <a href="<?php echo base_url(); ?>">Show</a>
+        </li>
+        
+        <li class="menu-element">
+            <a href="<?php echo base_url('/track'); ?>">Track</a>
+        </li>
+    </ul>
+</div>

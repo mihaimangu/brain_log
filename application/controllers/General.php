@@ -65,7 +65,9 @@ class General extends CI_Controller
             
         }
         
+        $this->load->view('part/header');
         $this->load->view('login');
+         $this->load->view('part/footer');
         
     }
     
