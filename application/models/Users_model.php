@@ -32,6 +32,7 @@ class Users_model extends CI_Model
         $array = array(
             'logged_in' => true,
             'username' => 'adm',
+            'user_id' => 1,
         );
         
         $this->session->set_userdata($array);
@@ -42,14 +43,20 @@ class Users_model extends CI_Model
     {   
     
         $logged_in = $this->session->userdata('logged_in');
-    
-
         
         if(isset($logged_in) && $logged_in){
             return true;
         } else {
             return false;
         }
+        
+        
+    }
+    
+    public function logout()
+    {
+        
+        $this->session->sess_destroy();
         
         
     }
