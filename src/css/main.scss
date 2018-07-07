@@ -1,0 +1,65 @@
+body{
+   background: white;
+}
+
+.feeling{
+    border: 1px solid #d9d9d9;
+    max-width: 450px;
+    margin-bottom: 30px;
+}
+
+.menu ul{
+    list-style: none;
+    margin-left: 0px;
+    padding-left: 0px;
+}
+
+.menu-element{
+    display: inline-block;
+    text-decoration: none;
+    margin-right: 5px;
+    background-color: #505050;
+    padding: 5px 10px;
+    color: white;
+}
+
+.menu-element a{
+    color: white;
+    text-decoration: none;
+}
+
+.add-form{
+    margin-bottom: 20px;
+}
+
+.add-form select{
+    padding: 5px;
+}
+
+.add-form select{
+    margin-bottom: 5px;
+}
+
+.add-form .btn{
+    background: #d9d9d9;
+    color: black;
+    display: block;
+    padding: 5px 10px;
+    outline: none;
+    box-shadow: none;
+    border: 1px solid transparent;
+    cursor: pointer;
+}
+
+
+.feeling{
+    padding: 5px 10px;
+}
+
+.feeling-edit{
+    float: right;
+    top: 0;
+    right: 0;
+    border: 1px solid transparent;
+    background: none;
+}
