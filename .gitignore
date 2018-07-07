@@ -4,3 +4,4 @@ vendor
 application/config/local_variables.php
 local_variables.php
 brain_log.zip
+node_modules
