@@ -14,24 +14,19 @@ class General extends CI_Controller
     public function index()
     {
         
-     
-      
         $logged_in = $this->users_model->check_auth();
-        
-        //var_dump($logged_in);
-       
+
+        //if not logged in, move to index page
         if(!$logged_in){
              header("Location: " . base_url('/login'));
             
         }
         
-     
         $this->load->view('part/header');
         $this->load->view('add_note');
         
         $post = $this->input->post();
-        
-
+    
         if(isset($post) && count($post)){
             
             $this->general_model->add_feeling($post);
@@ -46,6 +41,34 @@ class General extends CI_Controller
         $this->load->view('part/footer');
         
         
+    }
+    
+    public function feeling($id)
+    {
+        
+        $filter = [
+          'type' => ['feeling'], 
+            'id' => [$id],
+        ];
+        
+        $data = $this->general_model->read_general('logs', NULL, $filter);
+        if(count($data)){
+
+            $data = [
+                'data' => $data[0]
+            ];
+            $this->load->view('part/header');
+            $this->load->view('single_feeling', $data);
+            $this->load->view('part/footer');    
+            
+        } else {
+            
+            $this->load->view('part/header');
+            $this->load->view('not_found');
+            $this->load->view('part/footer');
+        
+        }
+ 
     }
     
     public function login()
