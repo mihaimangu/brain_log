@@ -14,13 +14,10 @@ class General extends CI_Controller
     public function index()
     {
         
-        $logged_in = $this->users_model->check_auth();
+        date_default_timezone_set('Europe/Bucharest');
+        
 
-        //if not logged in, move to index page
-        if(!$logged_in){
-             header("Location: " . base_url('/login'));
-            
-        }
+        $this->redirect_auth();
         
         $this->load->view('part/header');
         $this->load->view('add_note');
@@ -45,6 +42,14 @@ class General extends CI_Controller
     
     public function feeling($id)
     {
+        
+        //detect if user want to delete the entry
+        if(isset($_POST) && isset($_POST['delete']) && $_POST['delete'] == true){
+            $params = [
+              'deleted' => 1
+            ];
+            $this->general_model->update_general('logs', $id, $params);
+        }
         
         $filter = [
           'type' => ['feeling'], 
@@ -123,6 +128,54 @@ class General extends CI_Controller
       $logged_in = $this->session->userdata();
         
         var_dump($logged_in);
+        
+    }
+    
+    public function track()
+    {
+        
+        $this->load->view('part/header');
+        $this->load->view('track');
+        $this->load->view('part/footer');
+        
+        
+    }
+    
+    public function new_influent()
+    {
+        
+        $this->redirect_auth();
+
+        
+        if(isset($_POST) && count($_POST)){
+            
+            $post = $this->input->post();
+            
+            $params = [
+                'user_id' => 1,
+                'name' => $post['name'],
+                'unit_of_measure' => $post['measure'],
+            ];
+            
+            var_dump($params);
+            
+            $this->general_model->write_general('log_types', $params);
+        }
+        
+        $this->load->view('part/header');
+        $this->load->view('new_influent');
+        $this->load->view('part/footer');
+        
+    }
+    
+    function redirect_auth()
+    {
+        
+        //if not logged in, move to index page
+        $logged_in = $this->users_model->check_auth();
+        if(!$logged_in){
+             header("Location: " . base_url('/login'));
+        }
         
     }
     

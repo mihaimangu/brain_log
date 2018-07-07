@@ -158,7 +158,10 @@ class General_model extends CI_Model
     public function get_feelings()
     {
         
-        $where = array('user_id' => 1);
+        $where = array(
+            'user_id' => 1,
+            'deleted' => 0    
+        );
         
         $this->db->where($where);
         $this->db->order_by('id', 'desc');
@@ -166,7 +169,14 @@ class General_model extends CI_Model
         
         return $query->result_array();
         
-        
     }
+    
+	public function update_general($table, $id, $params)
+	{
+
+		$this->db->where('id', $id);
+		$this->db->update($table, $params);
+
+	}
 
 }

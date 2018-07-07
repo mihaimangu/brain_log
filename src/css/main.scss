@@ -4,7 +4,6 @@ body{
 
 .feeling{
     border: 1px solid #d9d9d9;
-    max-width: 450px;
     margin-bottom: 30px;
 }
 
@@ -62,4 +61,35 @@ body{
     right: 0;
     border: 1px solid transparent;
     background: none;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.feelings-wrapper{
+    max-width: 450px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.new-influent--row{
+    display: block;
+    margin-bottom: 15px;
+}
+
+//track page
+.new-log--wrapper{
+    text-align: center;
+}
+
+.new-log--wrapper{
+    select, input{
+        width: 500px;
+        max-width: 100%;
+        padding: 7px 12px;
+        box-sizing: border-box;
+    }
+}
+
+.new-log--row{
+    margin-bottom: 15px; 
 }

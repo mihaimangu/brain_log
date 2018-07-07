@@ -77,3 +77,5 @@ $route['api/logs'] = 'api/logs';
 $route['login'] = 'general/login';
 $route['debug'] = 'general/debug';
 $route['logout'] = 'general/logout';
+$route['track'] = 'general/track';
+$route['new-influent'] = 'general/new_influent';
