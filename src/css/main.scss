@@ -93,3 +93,14 @@ body{
 .new-log--row{
     margin-bottom: 15px; 
 }
+
+.login--wrapper{
+    text-align: center;
+    input{
+        width: 100%;
+        display: block;
+        padding: 5px 10px;
+        box-sizing: border-box;
+        margin-bottom: 5px;
+    }
+}

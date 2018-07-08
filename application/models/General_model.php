@@ -160,7 +160,8 @@ class General_model extends CI_Model
         
         $where = array(
             'user_id' => 1,
-            'deleted' => 0    
+            'deleted' => 0,
+            'type' => 1,
         );
         
         $this->db->where($where);

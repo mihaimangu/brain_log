@@ -52,11 +52,12 @@ class General extends CI_Controller
         }
         
         $filter = [
-          'type' => ['feeling'], 
+          'type' => ['1'], 
             'id' => [$id],
         ];
         
         $data = $this->general_model->read_general('logs', NULL, $filter);
+        
         if(count($data)){
 
             $data = [
@@ -93,7 +94,9 @@ class General extends CI_Controller
             
         }
         
-        $this->load->view('part/header');
+        $data['show_menu'] = false;
+        
+        $this->load->view('part/header', $data);
         $this->load->view('login');
          $this->load->view('part/footer');
         
@@ -134,8 +137,35 @@ class General extends CI_Controller
     public function track()
     {
         
+        $post = $this->input->post();
+        
+        
+        if(isset($post) && count($post))
+        {
+            var_dump($post);
+            $params = [
+                'type' => $post['type'],
+                'rating' => $post['measurement'],
+                'user_id' => 1,
+                'time' => time(),
+            ];
+            
+            $this->general_model->write_general('logs', $params);
+            echo 'added';
+            
+           
+        }
+        
+        $filter = [
+            'user_id' => [0,1],
+        ];
+        
+        $data['types'] = $this->general_model->read_general('log_types', NULL, $filter);
+        
+        //var_dump($data);
+        
         $this->load->view('part/header');
-        $this->load->view('track');
+        $this->load->view('track', $data);
         $this->load->view('part/footer');
         
         

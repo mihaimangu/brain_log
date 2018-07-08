@@ -12,6 +12,8 @@
 </head>
 
 <body>
+
+<?php if(!(isset($show_menu) && !$show_menu == 'false')): ?>
 <div class="menu">
     <ul>
         <li class="menu-element">
@@ -23,3 +25,4 @@
         </li>
     </ul>
 </div>
+<?php endif; ?>
