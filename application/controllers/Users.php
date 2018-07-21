@@ -39,8 +39,6 @@ class users extends REST_Controller
 		$email = $this->input->post('email');
 
 		//return error if email and password are not set
-
-        
 		$email_exists = $this->users_model->email_exists($email);
 
 		if($email_exists){
@@ -50,16 +48,20 @@ class users extends REST_Controller
 			), 400);
 		}
 
+		// $this->response([
+		// 	'response'=>$email_exists,
+		// ]);
+
 		$user_data = array(
 			//'first_name' => $first_name,
 			//'last_name' => $last_name,
 			'email' => $email,
-			'password' => $password,
+			'password' => $encrypted_password,
 		);
 
         $this->load->model('general_model');
         
-        $table = 'app_users';
+        $table = 'users';
 		$success = $this->general_model->write_general($table,$user_data);
 
 		if($success){
@@ -77,7 +79,9 @@ class users extends REST_Controller
 		}
 	
 
-    }
+	}
+	
+	
     
 }
 

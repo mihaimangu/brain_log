@@ -83,22 +83,35 @@ class General extends CI_Controller
         $post = $this->input->post();
 
         
-        if(isset($post['username']) && $post['username'] == 'adm' && isset($post['password']) && $post['password'] == 'chrome4setup' )
+        if(isset($post['username']) && isset($post['password']))
         {
       
-            $this->users_model->remember_user();   
-            
-            //echo 'success';
-            
-            header("Location: " . base_url(''));
-            
+           
+
+            $this->load->model("users_model");
+
+            $email = $post['username'];
+            $password = $post['password'];
+
+            $response = $this->users_model->user_login($email, $password);
+            $success = $response['success'];
+
+            if($success){
+
+                $email = $response['data']['email'];
+                $id = $response['data']['id'];
+    
+                $this->users_model->set_auth_cookie($id, $email);   
+                header("Location: " . base_url(''));
+            }
         }
-        
+
+
         $data['show_menu'] = false;
         
         $this->load->view('part/header', $data);
         $this->load->view('login');
-         $this->load->view('part/footer');
+        $this->load->view('part/footer');
         
     }
     
@@ -107,7 +120,6 @@ class General extends CI_Controller
         
         $this->users_model->logout();
         header("Location: " . base_url(''));
-        
         
     }
     
@@ -200,9 +212,13 @@ class General extends CI_Controller
     
     function redirect_auth()
     {
-        
+
+        $this->load->model('users_model');
+
         //if not logged in, move to index page
-        $logged_in = $this->users_model->check_auth();
+        $login_data = $this->users_model->get_login_status();
+        $logged_in = $login_data['authentificated'];
+
         if(!$logged_in){
              header("Location: " . base_url('/login'));
         }
