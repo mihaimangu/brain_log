@@ -4,7 +4,7 @@ var browserSync = require('browser-sync').create();
 
 gulp.task('serve', ['sass'], function() {
     browserSync.init({
-        proxy: "localhost/brain_log"
+        proxy: "localhost"
     });
     gulp.watch("src/css/*.scss", ['sass']);
     gulp.watch("application/**/*.php").on('change', browserSync.reload);
