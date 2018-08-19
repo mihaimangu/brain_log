@@ -71,11 +71,12 @@ $route['feeling/(:num)'] = 'general/feeling/$1';
 */
 
 $route['api'] = 'api';
-$route['api/user'] = 'users/user';
+$route['api/user'] = 'users/user';  
 $route['api/logs'] = 'api/logs';
 //$route['api/menus'] = 'api/menus';
 $route['login'] = 'general/login';
 $route['debug'] = 'general/debug';
 $route['logout'] = 'general/logout';
 $route['track'] = 'general/track';
+$route['show'] = 'general';
 $route['new-influent'] = 'general/new_influent';

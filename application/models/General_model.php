@@ -155,7 +155,8 @@ class General_model extends CI_Model
         $this->db->insert('logs', $data);
         
     }
-    
+	
+
     public function get_feelings()
     {
         
@@ -171,7 +172,22 @@ class General_model extends CI_Model
         
         return $query->result_array();
         
-    }
+	}
+	
+	public function get_logs($user_id)
+	{
+
+		$where = array(
+			'user_id' => $user_id,
+			'deleted' => 0,
+		);
+
+		$this->db->where($where);
+        $this->db->order_by('id', 'desc');
+        $query = $this->db->get('view_logs');
+        
+        return $query->result_array();
+	}
     
 	public function update_general($table, $id, $params)
 	{

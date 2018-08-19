@@ -13,14 +13,15 @@ class General extends CI_Controller
     
     public function index()
     {
-        
-        date_default_timezone_set('Europe/Bucharest');
-        
+    
+        global $login_data;
 
+        date_default_timezone_set('Europe/Bucharest');
+    
         $this->redirect_auth();
         
         $this->load->view('part/header');
-        $this->load->view('add_note');
+       
         
         $post = $this->input->post();
     
@@ -29,15 +30,30 @@ class General extends CI_Controller
             $this->general_model->add_feeling($post);
         
         }
+
+        if(isset($_GET['type'])){
+            $type = $_GET['type'];
+        }
+
+       // var_dump($login_data);
+
+        if(isset($login_data) && isset($login_data['user_details']->id)){
+            // echo 'you are logged in';
+
+            $user_id = $login_data['user_details']->id;
+
+            $data['logs'] = $this->general_model->get_logs($user_id);
+            $this->load->view('add_note');
+            $this->load->view('list_logs', $data);
+
+        } else {
+
+            // echo 'You are not logged in, no data to display';
+            $this->load->view('not_logged');
+
+        }
         
-        //load entries
-        $data['feelings'] = $this->general_model->get_feelings();
-        $this->load->view('list_feelings', $data);
-        
-        
-        $this->load->view('part/footer');
-        
-        
+        $this->load->view('part/footer');    
     }
     
     public function feeling($id)
@@ -212,6 +228,8 @@ class General extends CI_Controller
     
     function redirect_auth()
     {
+
+        global $login_data;
 
         $this->load->model('users_model');
 
