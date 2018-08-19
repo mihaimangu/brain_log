@@ -79,4 +79,5 @@ $route['debug'] = 'general/debug';
 $route['logout'] = 'general/logout';
 $route['track'] = 'general/track';
 $route['show'] = 'general';
+$route['about'] = 'stat/about';
 $route['new-influent'] = 'general/new_influent';

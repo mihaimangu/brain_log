@@ -23,6 +23,9 @@
         <li class="menu-element">
             <a href="<?php echo base_url('/track'); ?>">Track</a>
         </li>
+        <li class="menu-element">
+            <a href="<?php echo base_url('/about'); ?>">About</a>
+        </li>
     </ul>
 </div>
 <?php endif; ?>
