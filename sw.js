@@ -6,6 +6,7 @@ var cacheAssets = [
     '/assets/js/main.js',
     '/assets/css/main.css',
     '/about',
+    '/show',
 ];
 
 self.addEventListener('install', function(e){

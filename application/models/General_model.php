@@ -149,7 +149,9 @@ class General_model extends CI_Model
     
     public function add_feeling($data)
     {
-        
+		
+		date_default_timezone_set('Europe/Bucharest');
+		
         $data['time'] = time();
         
         $this->db->insert('logs', $data);

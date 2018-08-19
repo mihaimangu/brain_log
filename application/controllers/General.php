@@ -11,24 +11,39 @@ class General extends CI_Controller
         $this->load->model("general_model");
 	}
     
+
     public function index()
+    {
+
+        $logged = $this->logged_in();
+
+        if($logged)
+        {
+            header("Location: " . base_url('/show'));
+        } else {
+           
+            $data['show_menu'] = false;
+
+            $this->load->view('part/header', $data);
+            $this->load->view('home_presentation');
+            $this->load->view('part/footer');
+        }
+
+    }
+
+    public function show()
     {
     
         global $login_data;
-
-        date_default_timezone_set('Europe/Bucharest');
     
-        $this->redirect_auth();
+        //$this->redirect_auth();
         
         $this->load->view('part/header');
        
-        
         $post = $this->input->post();
     
         if(isset($post) && count($post)){
-            
-            $this->general_model->add_feeling($post);
-        
+            $this->general_model->add_feeling($post);        
         }
 
         if(isset($_GET['type'])){
@@ -46,7 +61,7 @@ class General extends CI_Controller
             $this->load->view('add_note');
             $this->load->view('list_logs', $data);
 
-        } else {
+        } else 
 
             // echo 'You are not logged in, no data to display';
             $this->load->view('not_logged');
@@ -102,8 +117,6 @@ class General extends CI_Controller
         if(isset($post['username']) && isset($post['password']))
         {
       
-           
-
             $this->load->model("users_model");
 
             $email = $post['username'];
@@ -204,7 +217,6 @@ class General extends CI_Controller
         
         $this->redirect_auth();
 
-        
         if(isset($_POST) && count($_POST)){
             
             $post = $this->input->post();
@@ -225,17 +237,26 @@ class General extends CI_Controller
         $this->load->view('part/footer');
         
     }
-    
-    function redirect_auth()
-    {
 
-        global $login_data;
+    function logged_in()
+    {
 
         $this->load->model('users_model');
 
         //if not logged in, move to index page
         $login_data = $this->users_model->get_login_status();
         $logged_in = $login_data['authentificated'];
+
+        return $logged_in;
+
+    }
+    
+    function redirect_auth()
+    {
+
+        global $login_data;
+
+
 
         if(!$logged_in){
              header("Location: " . base_url('/login'));
